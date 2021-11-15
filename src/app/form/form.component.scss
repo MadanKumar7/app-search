@@ -1,5 +1,9 @@
 .wrapper{
     .form-wrapper{
         border-top: none;
+        .bi-plus-circle-fill::before, .bi-x-circle-fill::before{
+            transform: scale(2);
+        }
     }
+    
 }

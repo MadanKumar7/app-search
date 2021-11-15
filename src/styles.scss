@@ -49,3 +49,20 @@ body{
 .bdr-blue{
     border: 1px solid #A7D8FF;
 }
+.btn.btn-primary{
+    background-color: #0969DA;
+    &:focus{
+        box-shadow: none;
+    }
+}
+.btn.btn-secondary{
+    background-color: #DDF4FF;
+    border: #DDF4FF;
+    color: #0969DA;
+    &:hover{
+        background-color: #0969DA;
+    }
+    &:focus{
+        box-shadow: none;
+    }
+}
