@@ -1,0 +1,18 @@
+<div class="wrapper">
+    <div class="container bg-blue bdr-blue mt-5 py-3">
+        <h3>Employee Table</h3>
+    </div>
+    <div class="container bg-grey bdr-grey form-wrapper p-4">
+        <ngx-datatable 
+            class="ngx-table"
+            [rows]="employeeRows"
+            [columns]="employeeCols"
+            [scrollbarH]="true"
+            [rowHeight]="'auto'"
+            columnMode="standard"
+            [limit]="rowLimit"
+        >
+
+        </ngx-datatable>
+    </div>
+</div>

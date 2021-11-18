@@ -7,12 +7,15 @@ export class SearchFieldsData {
         const searchfieldsData = {
             searchByList: [
                 {id:'id', value:'Employee ID'},
-                {id:'name', value:'Name'},
+                {id:'firstName', value:'First Name'},
+                {id:'lastName', value:'Last Name'},
                 {id:'dob', value:'DOB'},
+                {id:'age', value:'Age'},
                 {id:'position', value:'Position'},
                 {id:'department', value:'Department'},
-                {id:'joiningDate', value:'Joining Date'},
-                {id:'experience', value:'Experience'}
+                {id:'experience', value:'Experience'},
+                {id:'phoneNumber', value:'Phone Number'},
+                {id:'salary', value:'Salary'}
             ],
     
             searchByoptions: {
@@ -21,9 +24,14 @@ export class SearchFieldsData {
                     placeholder: 'Enter Employee ID',
                     inputType: 'text'
                 },
-                name: {
-                    fieldKey: 'name',
-                    placeholder: 'Enter Employee Name',
+                firstName: {
+                    fieldKey: 'firstName',
+                    placeholder: 'Enter First Name',
+                    inputType: 'text'   
+                },
+                lastName: {
+                    fieldKey: 'lastName',
+                    placeholder: 'Enter Last Name',
                     inputType: 'text'   
                 },
                 dob: {
@@ -34,48 +42,130 @@ export class SearchFieldsData {
                     },
                     inputType: 'date'   
                 },
+                age: {
+                    fieldKey: 'age',
+                    placeholder: 'Enter Age',
+                    inputType: 'text'   
+                },
                 position: {
                     fieldKey: 'position',
                     placeholder: 'Choose Position',
                     inputType: 'select',
                     options: [
+                        
                         {
-                            id:'operator',
-                            value: 'Operator'
+                            "id": "supervisor",
+                            "value": "Supervisor"
                         },
                         {
-                            id:'cleaner',
-                            value: 'Cleaner'
+                            "id": "associate",
+                            "value": "Associate"
                         },
                         {
-                            id:'supervisor',
-                            value: 'Supervisor'
+                            "id": "executive",
+                            "value": "Executive"
                         },
                         {
-                            id:'hrManager',
-                            value: 'HR Manager'
+                            "id": "liason",
+                            "value": "Liason"
                         },
                         {
-                            id:'finance',
-                            value: 'Finance Manager'
+                            "id": "officer",
+                            "value": "Officer"
                         },
                         {
-                            id:'floormanager',
-                            value: 'Floor Manager'
+                            "id": "manager",
+                            "value": "Manager"
                         },
                         {
-                            id:'generalManager',
-                            value: 'General Manager'
+                            "id": "engineer",
+                            "value": "Engineer"
                         },
                         {
-                            id:'boardMember',
-                            value: 'Board Member'
+                            "id": "specialist",
+                            "value": "Specialist"
                         },
                         {
-                            id:'ceo',
-                            value: 'CEO'
+                            "id": "director",
+                            "value": "Director"
+                        },
+                        {
+                            "id": "coordinator",
+                            "value": "Coordinator"
+                        },
+                        {
+                            "id": "administrator",
+                            "value": "Administrator"
+                        },
+                        {
+                            "id": "architect",
+                            "value": "Architect"
+                        },
+                        {
+                            "id": "analyst",
+                            "value": "Analyst"
+                        },
+                        {
+                            "id": "designer",
+                            "value": "Designer"
+                        },
+                        {
+                            "id": "planner",
+                            "value": "Planner"
+                        },
+                        {
+                            "id": "orchestrator",
+                            "value": "Orchestrator"
+                        },
+                        {
+                            "id": "technician",
+                            "value": "Technician"
+                        },
+                        {
+                            "id": "developer",
+                            "value": "Developer"
+                        },
+                        {
+                            "id": "producer",
+                            "value": "Producer"
+                        },
+                        {
+                            "id": "consultant",
+                            "value": "Consultant"
+                        },
+                        {
+                            "id": "assistant",
+                            "value": "Assistant"
+                        },
+                        {
+                            "id": "facilitator",
+                            "value": "Facilitator"
+                        },
+                        {
+                            "id": "agent",
+                            "value": "Agent"
+                        },
+                        {
+                            "id": "representative",
+                            "value": "Representative"
+                        },
+                        {
+                            "id": "strategist",
+                            "value": "Strategist"
+                        },
+                        {
+                            "id": "supervisor",
+                            "value": "Supervisor"
+                        },
+                        {
+                            "id": "vicePresident",
+                            "value": "Vice President"
+                        },
+                        {
+                            "id": "vp",
+                            "value": "VP"
                         }
-                    ]   
+                    ]
                 },
                 department: {
                     fieldKey: 'department',
@@ -83,34 +173,140 @@ export class SearchFieldsData {
                     inputType: 'select',
                     options: [
                         {
-                            id:'produciton',
-                            value: 'Production'
+                            "id": "solutions",
+                            "value": "Solutions"
                         },
                         {
-                            id:'hr',
-                            value: 'HR'
+                            "id": "program",
+                            "value": "Program"
                         },
                         {
-                            id:'finance',
-                            value: 'Finance'
+                            "id": "brand",
+                            "value": "Brand"
                         },
                         {
-                            id:'management',
-                            value: 'Management'
+                            "id": "security",
+                            "value": "Security"
+                        },
+                        {
+                            "id": "research",
+                            "value": "Research"
+                        },
+                        {
+                            "id": "marketing",
+                            "value": "Marketing"
+                        },
+                        {
+                            "id": "directives",
+                            "value": "Directives"
+                        },
+                        {
+                            "id": "implementation",
+                            "value": "Implementation"
+                        },
+                        {
+                            "id": "integration",
+                            "value": "Integration"
+                        },
+                        {
+                            "id": "functionality",
+                            "value": "Functionality"
+                        },
+                        {
+                            "id": "response",
+                            "value": "Response"
+                        },
+                        {
+                            "id": "paradigm",
+                            "value": "Paradigm"
+                        },
+                        {
+                            "id": "tactics",
+                            "value": "Tactics"
+                        },
+                        {
+                            "id": "markets",
+                            "value": "Markets"
+                        },
+                        {
+                            "id": "group",
+                            "value": "Group"
+                        },
+                        {
+                            "id": "division",
+                            "value": "Division"
+                        },
+                        {
+                            "id": "applications",
+                            "value": "Applications"
+                        },
+                        {
+                            "id": "optimization",
+                            "value": "Optimization"
+                        },
+                        {
+                            "id": "operations",
+                            "value": "Operations"
+                        },
+                        {
+                            "id": "communications",
+                            "value": "Communications"
+                        },
+                        {
+                            "id": "web",
+                            "value": "Web"
+                        },
+                        {
+                            "id": "quality",
+                            "value": "Quality"
+                        },
+                        {
+                            "id": "assurance",
+                            "value": "Assurance"
+                        },
+                        {
+                            "id": "accounts",
+                            "value": "Accounts"
+                        },
+                        {
+                            "id": "creative",
+                            "value": "Creative"
+                        },
+                        {
+                            "id": "accountability",
+                            "value": "Accountability"
+                        },
+                        {
+                            "id": "interactions",
+                            "value": "Interactions"
+                        },
+                        {
+                            "id": "factors",
+                            "value": "Factors"
+                        },
+                        {
+                            "id": "usability",
+                            "value": "Usability"
+                        },
+                        {
+                            "id": "metrics",
+                            "value": "Metrics"
                         }
                     ]   
-                },
-                joiningDate: {
-                    fieldKey: 'joiningDate',
-                    placeholder: {
-                        start: 'Start Date',
-                        end: 'End Date'
-                    },
-                    inputType: 'date'   
                 },
                 experience: {
                     fieldKey: 'experience',
                     placeholder: 'Enter Experience',
+                    inputType: 'text'   
+                },
+                phoneNumber: {
+                    fieldKey: 'phoneNumber',
+                    placeholder: '000-0000-00',
+                    inputType: 'text'   
+                },
+                salary: {
+                    fieldKey: 'salary',
+                    placeholder: 'Enter Salary',
                     inputType: 'text'   
                 },
             }
@@ -119,5 +315,4 @@ export class SearchFieldsData {
         return searchfieldsData;
     }
 
-    
 }
