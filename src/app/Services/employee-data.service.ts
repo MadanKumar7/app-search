@@ -10,6 +10,6 @@ export class EmployeeDataService {
 
 
 	public getEmpJSON() {
-		return this.http.get("./assets/employee-details.json")
+		return this.http.get("./assets/employees-details.json")
 	}
 }

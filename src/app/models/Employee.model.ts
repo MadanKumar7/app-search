@@ -7,11 +7,18 @@ export class Employee {
         lastName: String;
         dob: String;
         age: String;
+        gender: String;
+        phoneNumber: String;
+        email: String;
+        ssn: String;
         position: String;
         department: String;
         experience: String;
-        phoneNumber: String;
         salary: String;
+        policyNumber: String;
+        accountNumber: String;
+        bankName: String;
+        state: String;
+        maritialStatus: String;
     }
-
 }

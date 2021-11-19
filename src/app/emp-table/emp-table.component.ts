@@ -3,6 +3,7 @@ import { Employee } from '../models/Employee.model';
 import { EmployeeDataService } from '../Services/employee-data.service';
 import { PaginationComponent } from '../shared-components/pagination/pagination.component';
 import { EmpTableCols } from '../utils/emp-table-cols';
+import { Sort } from '../utils/sorting';
 
 @Component({
 	selector: 'app-emp-table',
@@ -26,7 +27,8 @@ export class EmpTableComponent implements OnInit, AfterViewInit {
 
 	constructor(
 		private empDataSvc: EmployeeDataService,
-		private empTableCols: EmpTableCols
+		private empTableCols: EmpTableCols,
+		private sorting: Sort
 	) { }
 
 	ngOnInit(): void {
@@ -64,6 +66,21 @@ export class EmpTableComponent implements OnInit, AfterViewInit {
 	startPagination(pagination:any){
 		let {start, end} = pagination;
 		this.employeeRows = this.employeeDetails.slice(start-1, end);
+	}
+
+	sortColumn(prop:any, order:any){
+		let sortedArray = [...this.employeeDetails];
+		sortedArray = sortedArray.sort(this.sorting.sortData(prop, order));
+		this.employeeDetails = [...sortedArray];
+		this.initializeTable();
+
+		this.employeeCols.forEach((element:any) => {
+			element.order = 'default';
+			if(element.prop === prop){
+				element.order = order;
+			}
+		});
+
 	}
 
 }

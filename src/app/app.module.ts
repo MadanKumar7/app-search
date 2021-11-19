@@ -11,6 +11,7 @@ import { EmpTableComponent } from './emp-table/emp-table.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { EmpTableCols } from './utils/emp-table-cols';
 import { PaginationComponent } from './shared-components/pagination/pagination.component';
+import { Sort } from './utils/sorting';
 
 @NgModule({
 	declarations: [
@@ -27,7 +28,7 @@ import { PaginationComponent } from './shared-components/pagination/pagination.c
 		HttpClientModule,
 		NgxDatatableModule
 	],
-	providers: [SearchFieldsData, EmpTableCols,],
+	providers: [SearchFieldsData, EmpTableCols, Sort],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

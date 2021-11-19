@@ -20,7 +20,7 @@
                 [columns]="employeeCols"
                 [scrollbarH]="true"
                 [rowHeight]="'auto'"
-                columnMode="force"
+                columnMode="standard"
                 [limit]="paginationValues.limit"
             >
 
@@ -37,11 +37,16 @@
                 >
                     <ng-template ngx-datatable-header-template>
                         <span>{{column.name}}</span>
+                        <i class="bi bi-caret-up sort up" *ngIf="column.order === 'default' || column.order === 'desc'" (click)="sortColumn(column.prop, 'asc')"></i>
+                        <i class="bi bi-caret-up-fill sort up" *ngIf="column.order === 'asc'"></i>
+                        <i class="bi bi-caret-down sort down" *ngIf="column.order === 'default' || column.order === 'asc'" (click)="sortColumn(column.prop, 'desc')"></i>
+                        <i class="bi bi-caret-down-fill sort down"  *ngIf="column.order === 'desc'"></i>
                     </ng-template>
 
                     <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-                        <span *ngIf="column.type != 'currency'">{{value}}</span>
+                        <span *ngIf="column.type != 'currency' && column.type != 'date'">{{value}}</span>
                         <span *ngIf="column.type === 'currency'">{{value | currency: 'USD' : 'symbol'}}</span>
+                        <span *ngIf="column.type === 'date'">{{value | date: 'MM/dd/yyyy' }}</span>
                     </ng-template>
 
                 </ngx-datatable-column>
