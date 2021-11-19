@@ -10,12 +10,14 @@ import { SearchFieldsData } from './utils/search-fields-data';
 import { EmpTableComponent } from './emp-table/emp-table.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { EmpTableCols } from './utils/emp-table-cols';
+import { PaginationComponent } from './shared-components/pagination/pagination.component';
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		FormComponent,
-  		EmpTableComponent
+  		EmpTableComponent,
+    PaginationComponent
 	],
 	imports: [
 		BrowserModule,

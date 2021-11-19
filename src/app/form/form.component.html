@@ -2,7 +2,7 @@
     <div class="container bg-blue bdr-blue mt-5 py-3">
         <h3>Start digging...</h3>
     </div>
-    <div class="container bg-grey bdr-grey form-wrapper p-4">
+    <div class="container bg-grey bdr-grey form-wrapper mb-5 p-4">
         <ng-container [formGroup]="searchForm">
             <ng-container formArrayName="searchFields">
                 <ng-container *ngFor="let formCtrl of getSearchFieldsArr().controls; let idx = index">

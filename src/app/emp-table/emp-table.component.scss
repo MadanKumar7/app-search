@@ -1,0 +1,78 @@
+
+@mixin table-border{
+    border: 1px var(--border);
+    border-right: none;
+    &:last-child{
+        border-right: 1px var(--border);
+    }
+}
+
+@mixin align-table-content{
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+// .ngx-table.emp-table{
+//     margin-bottom: 10px;
+// }
+
+.ngx-table.emp-table ::ng-deep .datatable-header{
+    height: 3rem !important;
+}
+
+.ngx-table.emp-table ::ng-deep .datatable-header-cell{
+    @include table-border();
+    height: 3rem !important;
+    font-weight: 700;
+    background-color: #EBF3FB;
+    overflow: visible !important;
+}
+
+.ngx-table.emp-table ::ng-deep .datatable-header-cell-template-wrap{
+    @include align-table-content();
+}
+
+.ngx-table.emp-table ::ng-deep .datatable-body-cell{
+    @include table-border();
+    @include align-table-content();
+    min-height: 3rem;
+    border-top: none;
+    overflow: visible !important;
+    word-break: break-word;
+}
+
+.ngx-table.emp-table ::ng-deep .datatable-body-row{
+    
+    &.datatable-row-odd .datatable-body-cell{
+        background-color: #F7F7F7;
+    }
+    &.datatable-row-even .datatable-body-cell{
+        background-color: #FFFFFF;
+    }
+}
+
+::ng-deep .datatable-row-wrapper{
+    &:last-child{
+        margin-bottom: 20px;
+    }
+}
+
+::ng-deep .ngx-datatable.scroll-horz .datatable-body{
+    &::-webkit-scrollbar{
+        width: 10px;
+        height: 10px;
+    }
+    &::-webkit-scrollbar-track{
+        border-radius: 10px;
+    }
+    &::-webkit-scrollbar-thumb{
+        background: #C6C6C6 0% 0% no-repeat padding-box;
+        border-radius: 10px;
+    }
+    &::-webkit-scrollbar-thumb:hover{
+        background: #A7D8FF 0% 0% no-repeat padding-box;
+        border:1px solid #DDF4FF;
+    }
+}

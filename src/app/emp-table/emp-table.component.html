@@ -2,17 +2,60 @@
     <div class="container bg-blue bdr-blue mt-5 py-3">
         <h3>Employee Table</h3>
     </div>
-    <div class="container bg-grey bdr-grey form-wrapper p-4">
-        <ngx-datatable 
-            class="ngx-table"
-            [rows]="employeeRows"
-            [columns]="employeeCols"
-            [scrollbarH]="true"
-            [rowHeight]="'auto'"
-            columnMode="standard"
-            [limit]="rowLimit"
-        >
+    
+    <div class="container bg-grey bdr-grey p-4 mb-5">
+        <div class="container text-end mb-4">
+            <app-pagination 
+                #paginationTop 
+                [paginationValues]="paginationValues" 
+                (changeRowLimit)="changeRowLimit($event)"
+                (pagination)="startPagination($event)"
+            ></app-pagination>
+        </div>
+        
+        <div class="container table-wrapper">
+            <ngx-datatable 
+                class="ngx-table emp-table"
+                [rows]="employeeRows"
+                [columns]="employeeCols"
+                [scrollbarH]="true"
+                [rowHeight]="'auto'"
+                columnMode="force"
+                [limit]="paginationValues.limit"
+            >
 
-        </ngx-datatable>
+                <ngx-datatable-column 
+                    *ngFor="let column of employeeCols"
+                    name="{{column.name}}"
+                    prop="{{column.prop}}"
+                    [width]="column.width"
+                    [resizeable]="column.resizeable"
+                    [sortable]="column.sortable"
+                    [draggable]="column.draggable"
+                    [frozenLeft]="column.frozenLeft"
+                    [cellClass]="column.type === 'currency'? 'justify-content-end' : 'none'"
+                >
+                    <ng-template ngx-datatable-header-template>
+                        <span>{{column.name}}</span>
+                    </ng-template>
+
+                    <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                        <span *ngIf="column.type != 'currency'">{{value}}</span>
+                        <span *ngIf="column.type === 'currency'">{{value | currency: 'USD' : 'symbol'}}</span>
+                    </ng-template>
+
+                </ngx-datatable-column>
+
+            </ngx-datatable>
+        </div>
+
+        <div class="container text-end mt-4">
+            <app-pagination 
+                #paginationBtm 
+                [paginationValues]="paginationValues" 
+                (changeRowLimit)="changeRowLimit($event)"
+                (pagination)="startPagination($event)"
+            ></app-pagination>
+        </div>
     </div>
 </div>
