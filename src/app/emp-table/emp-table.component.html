@@ -1,6 +1,6 @@
 <div class="wrapper">
     <div class="container bg-blue bdr-blue mt-5 py-3">
-        <h3>Employee Table</h3>
+        <h3>Employees Details</h3>
     </div>
     
     <div class="container bg-grey bdr-grey p-4 mb-5">
@@ -44,9 +44,8 @@
                     </ng-template>
 
                     <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-                        <span *ngIf="column.type != 'currency' && column.type != 'date'">{{value}}</span>
+                        <span *ngIf="column.type != 'currency'">{{value}}</span>
                         <span *ngIf="column.type === 'currency'">{{value | currency: 'USD' : 'symbol'}}</span>
-                        <span *ngIf="column.type === 'date'">{{value | date: 'MM/dd/yyyy' }}</span>
                     </ng-template>
 
                 </ngx-datatable-column>

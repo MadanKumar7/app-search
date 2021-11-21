@@ -1,14 +1,20 @@
-import { Employee } from "../models/Employee.model";
+import { DatePipe } from "@angular/common";
 
 export class Sort {
 
-    public sortData(prop:any, order:any){
-        return function sort(a:any, b:any){
+    public sortData(prop:string, order:string){
+        return (a:any, b:any) => {
 
-            if(order === 'asc'){
-                return (a[prop] > b[prop] )? 1: (a[prop] < b[prop]? -1 : 0)
-            }else {
-                return a[prop] < b[prop] ? 1: (a[prop] > b[prop]? -1 : 0)
+            if(a[prop] === b[prop]){
+                return 0;
+            }else if(a[prop] === null){
+                return 1;
+            }else if(b[prop] === null){
+                return -1;
+            }else if(order === 'asc'){
+                return (a[prop] > b[prop]) ? -1 : 1;
+            }else{
+                return (a[prop] > b[prop]) ? 1 : -1;
             }
 
         }

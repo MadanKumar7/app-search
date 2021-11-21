@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { Employee } from '../models/Employee.model';
 import { EmployeeDataService } from '../Services/employee-data.service';
 import { PaginationComponent } from '../shared-components/pagination/pagination.component';
@@ -28,7 +29,8 @@ export class EmpTableComponent implements OnInit, AfterViewInit {
 	constructor(
 		private empDataSvc: EmployeeDataService,
 		private empTableCols: EmpTableCols,
-		private sorting: Sort
+		private sorting: Sort,
+		private db: AngularFireDatabase
 	) { }
 
 	ngOnInit(): void {
@@ -37,9 +39,11 @@ export class EmpTableComponent implements OnInit, AfterViewInit {
 	}
 
 	ngAfterViewInit(){
-		this.empDataSvc.getEmpJSON().subscribe((data: any) => {
-			this.employeeDetails = data.employees;
+		this.db.list('employees').valueChanges().subscribe((res:any[]) => {
+			this.employeeDetails = res;
 			this.initializeTable();
+		},(err:any) => {
+			console.log(err)
 		});
 	}
 
@@ -68,7 +72,7 @@ export class EmpTableComponent implements OnInit, AfterViewInit {
 		this.employeeRows = this.employeeDetails.slice(start-1, end);
 	}
 
-	sortColumn(prop:any, order:any){
+	sortColumn(prop:string, order:string){
 		let sortedArray = [...this.employeeDetails];
 		sortedArray = sortedArray.sort(this.sorting.sortData(prop, order));
 		this.employeeDetails = [...sortedArray];

@@ -108,7 +108,7 @@ export class EmpTableCols {
                 prop: "experience",
                 resizeable: false,
                 draggable: false,
-                width: "120",
+                width: "140",
                 frozenLeft: false,
                 order: "default"
             },
@@ -136,7 +136,7 @@ export class EmpTableCols {
                 prop: "accountNumber",
                 resizeable: false,
                 draggable: false,
-                width: "170",
+                width: "180",
                 frozenLeft: false,
                 order: "default"
             },
@@ -145,7 +145,7 @@ export class EmpTableCols {
                 prop: "bankName",
                 resizeable: false,
                 draggable: false,
-                width: "120",
+                width: "140",
                 frozenLeft: false,
                 order: "default"
             },
@@ -154,7 +154,7 @@ export class EmpTableCols {
                 prop: "state",
                 resizeable: false,
                 draggable: false,
-                width: "70",
+                width: "90",
                 frozenLeft: false,
                 order: "default"
             },
@@ -163,7 +163,7 @@ export class EmpTableCols {
                 prop: "maritialStatus",
                 resizeable: false,
                 draggable: false,
-                width: "150",
+                width: "170",
                 frozenLeft: false,
                 order: "default"
             },
