@@ -8,9 +8,12 @@ export class EmpTableCols {
                 prop: "id",
                 resizeable: false,
                 draggable: false,
-                width: "100",
+                width: "110",
                 frozenLeft: true,
-                order: "asc"
+                order: "desc",
+                type: "text",
+                filterValue: "",
+                value: ""
             },
             {
                 name: "First Name",
@@ -19,7 +22,10 @@ export class EmpTableCols {
                 draggable: false,
                 width: "150",
                 frozenLeft: true,
-                order: "default"
+                order: "default",
+                type: "text",
+                filterValue: "",
+                value: ""
             },
             {
                 name: "Last Name",
@@ -28,7 +34,10 @@ export class EmpTableCols {
                 draggable: false,
                 width: "150",
                 frozenLeft: true,
-                order: "default"
+                order: "default",
+                type: "text",
+                filterValue: "",
+                value: ""
             },
             {
                 name: "DOB",
@@ -38,25 +47,33 @@ export class EmpTableCols {
                 width: "120",
                 frozenLeft: false,
                 order: "default",
-                type: "date"
+                type: "date",
+                filterValue: "",
+                value: ""
             },
             {
                 name: "Age",
                 prop: "age",
                 resizeable: false,
                 draggable: false,
-                width: "100",
+                width: "120",
                 frozenLeft: false,
-                order: "default"
+                order: "default",
+                type: "number",
+                filterValue: "",
+                value: ""
             },
             {
                 name: "Gender",
                 prop: "gender",
                 resizeable: false,
                 draggable: false,
-                width: "100",
+                width: "120",
                 frozenLeft: false,
-                order: "default"
+                order: "default",
+                type: "text",
+                filterValue: "",
+                value: ""
             },
             {
                 name: "Phone Number",
@@ -65,7 +82,10 @@ export class EmpTableCols {
                 draggable: false,
                 width: "160",
                 frozenLeft: false,
-                order: "default"
+                order: "default",
+                type: "text",
+                filterValue: "",
+                value: ""
             },
             {
                 name: "E-mail",
@@ -74,7 +94,10 @@ export class EmpTableCols {
                 draggable: false,
                 width: "270",
                 frozenLeft: false,
-                order: "default"
+                order: "default",
+                type: "text",
+                filterValue: "",
+                value: ""
             },
             {
                 name: "SSN",
@@ -83,7 +106,10 @@ export class EmpTableCols {
                 draggable: false,
                 width: "150",
                 frozenLeft: false,
-                order: "default"
+                order: "default",
+                type: "text",
+                filterValue: "",
+                value: ""
             },
             {
                 name: "Position",
@@ -92,7 +118,10 @@ export class EmpTableCols {
                 draggable: false,
                 width: "140",
                 frozenLeft: false,
-                order: "default"
+                order: "default",
+                type: "text",
+                filterValue: "",
+                value: ""
             },
             {
                 name: "Department",
@@ -101,7 +130,10 @@ export class EmpTableCols {
                 draggable: false,
                 width: "160",
                 frozenLeft: false,
-                order: "default"
+                order: "default",
+                type: "text",
+                filterValue: "",
+                value: ""
             },
             {
                 name: "Experience",
@@ -110,7 +142,10 @@ export class EmpTableCols {
                 draggable: false,
                 width: "140",
                 frozenLeft: false,
-                order: "default"
+                order: "default",
+                type: "number",
+                filterValue: "",
+                value: ""
             },
             {
                 name: "Salary",
@@ -120,7 +155,9 @@ export class EmpTableCols {
                 width: "150",
                 frozenLeft: false,
                 order: "default",
-                type:"currency"
+                type: "currency",
+                filterValue: "",
+                value: "",
             },
             {
                 name: "Policy Number",
@@ -129,7 +166,10 @@ export class EmpTableCols {
                 draggable: false,
                 width: "170",
                 frozenLeft: false,
-                order: "default"
+                order: "default",
+                type: "number",
+                filterValue: "",
+                value: ""
             },
             {
                 name: "Account Number",
@@ -138,7 +178,10 @@ export class EmpTableCols {
                 draggable: false,
                 width: "180",
                 frozenLeft: false,
-                order: "default"
+                order: "default",
+                type: "number",
+                filterValue: "",
+                value: ""
             },
             {
                 name: "Bank Name",
@@ -147,7 +190,10 @@ export class EmpTableCols {
                 draggable: false,
                 width: "140",
                 frozenLeft: false,
-                order: "default"
+                order: "default",
+                type: "text",
+                filterValue: "",
+                value: ""
             },
             {
                 name: "State",
@@ -156,7 +202,10 @@ export class EmpTableCols {
                 draggable: false,
                 width: "90",
                 frozenLeft: false,
-                order: "default"
+                order: "default",
+                type: "text",
+                filterValue: "",
+                value: ""
             },
             {
                 name: "Maritial Status",
@@ -165,7 +214,10 @@ export class EmpTableCols {
                 draggable: false,
                 width: "170",
                 frozenLeft: false,
-                order: "default"
+                order: "default",
+                type: "text",
+                filterValue: "",
+                value: ""
             },
         ]
 

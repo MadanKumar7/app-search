@@ -2,19 +2,29 @@ import { DatePipe } from "@angular/common";
 
 export class Sort {
 
-    public sortData(prop:string, order:string){
+    public sortData(prop:string, order:string, type:string){
         return (a:any, b:any) => {
 
-            if(a[prop] === b[prop]){
+            let prop1, prop2;
+
+            if(type === 'date'){
+                prop1 = new Date(a[prop]);
+                prop2 = new Date(b[prop]);
+            }else{
+                prop1 = a[prop];
+                prop2 = b[prop];
+            }
+
+            if(prop1 === prop2){
                 return 0;
-            }else if(a[prop] === null){
+            }else if(prop1 === null){
                 return 1;
-            }else if(b[prop] === null){
+            }else if(prop2 === null){
                 return -1;
             }else if(order === 'asc'){
-                return (a[prop] > b[prop]) ? -1 : 1;
+                return (prop1 > prop2) ? -1 : 1;
             }else{
-                return (a[prop] > b[prop]) ? 1 : -1;
+                return (prop1 > prop2) ? 1 : -1;
             }
 
         }

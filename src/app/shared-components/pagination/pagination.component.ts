@@ -34,7 +34,9 @@ export class PaginationComponent implements OnInit {
 
 	setLimit(totalRecords:number){
 		this.limitArray = [];
-		if(totalRecords && totalRecords <= 30){
+		if(totalRecords < 10){
+			this.limitArray.push(10);
+		}else if(totalRecords && totalRecords <= 30){
 			for(let i=10; i<=totalRecords; i+=5){
 				this.limitArray.push(i);
 			}

@@ -19,6 +19,7 @@ import { Sort } from './utils/sorting';
 import { environment } from 'src/environments/environment';
 import { NavBarComponent } from './shared-components/nav-bar/nav-bar.component';
 import { HomeComponent } from './home/home.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
 	declarations: [
@@ -42,7 +43,7 @@ import { HomeComponent } from './home/home.component';
 		NgxSpinnerModule
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
-	providers: [SearchFieldsData, EmpTableCols, Sort],
+	providers: [SearchFieldsData, EmpTableCols, Sort, DatePipe],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
