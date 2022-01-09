@@ -215,6 +215,7 @@ export class EmpTableComponent implements OnInit, AfterViewInit {
 	}
 
 	clearFilters(){
+		this.isFiltered = false;
 		this.removeFilterValuesFromColumns();
 		this.showOriginalTable();
 		this.employeeColForm.reset();
