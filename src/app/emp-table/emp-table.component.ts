@@ -13,7 +13,7 @@ import { Sort } from '../utils/sorting';
 	templateUrl: './emp-table.component.html',
 	styleUrls: ['./emp-table.component.scss']
 })
-export class EmpTableComponent implements OnInit, AfterViewInit {
+export class EmpTableComponent implements OnInit {
 
 	@ViewChild('paginationTop') paginationTop!: PaginationComponent;
 	@ViewChild('paginationBtm') paginationBtm!: PaginationComponent;
@@ -29,6 +29,7 @@ export class EmpTableComponent implements OnInit, AfterViewInit {
 		limit:0
 	}
 	isFiltered = false;
+	dataReady = false;
 	employeeColForm!: FormGroup;
 
 	constructor(
@@ -43,15 +44,22 @@ export class EmpTableComponent implements OnInit, AfterViewInit {
 	ngOnInit(): void {
 		this.employeeCols = this.empTableCols.getempTableCols();
 		this.initiateEmpColForm();
+		this.getEmployeeDetails();
+		this.initializeTable();
 	}
 
-	ngAfterViewInit(){
-		this.db.list('employees').valueChanges().subscribe((res:any[]) => {
-			this.employeeDetails = res;
-			this.initializeTable();
-		},(err:any) => {
-			console.log(err)
-		});
+	getEmployeeDetails() {
+		this.employeeDetails = JSON.parse(localStorage.getItem('employeeData') || '[]')  as Employee[];
+		if(this.employeeDetails.length === 0){
+			this.empDataSvc.getEmployeeDetails().subscribe(
+				(res:any)=> {
+					if(res.length > 0){
+						this.employeeDetails = res;
+					}
+				}
+			);
+		}
+		
 	}
 
 	initiateEmpColForm(){
@@ -81,10 +89,11 @@ export class EmpTableComponent implements OnInit, AfterViewInit {
 			pageObj.limit = 10;
 			pageObj.totalRecords = totalRecords;
 			this.paginationValues = {...pageObj}
-			this.paginationTop?.setLimit(totalRecords);
-			this.paginationBtm?.setLimit(totalRecords);
+			// this.paginationTop?.setLimit(totalRecords);
+			// this.paginationBtm?.setLimit(totalRecords);
 			this.employeeRows = this.employeeDetails.slice(0, this.paginationValues.limit);
 		}
+		this.dataReady = true;
 	}
 
 	changeRowLimit(pageValues:any){

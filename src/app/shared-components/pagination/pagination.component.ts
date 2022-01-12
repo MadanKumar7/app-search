@@ -22,6 +22,7 @@ export class PaginationComponent implements OnInit {
 	constructor() { }
 
 	ngOnInit(): void {
+		this.setLimit(this.paginationValues.totalRecords);
 	}
 
 	emitChangeRowLimit(event:any){

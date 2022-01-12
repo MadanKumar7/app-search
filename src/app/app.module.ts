@@ -20,6 +20,10 @@ import { environment } from 'src/environments/environment';
 import { NavBarComponent } from './shared-components/nav-bar/nav-bar.component';
 import { HomeComponent } from './home/home.component';
 import { DatePipe } from '@angular/common';
+import { DataFilterService } from './Services/data-filter.service';
+import { CategoriesService } from './Services/categories.service';
+import { CategoryList } from './utils/category.list';
+// import { NgxChartsModule }from '@swimlane/ngx-charts';
 
 @NgModule({
 	declarations: [
@@ -40,10 +44,19 @@ import { DatePipe } from '@angular/common';
 		NgxDatatableModule,
 		AngularFireModule.initializeApp(environment.firebaseConfig),
    		AngularFireDatabaseModule,
-		NgxSpinnerModule
+		NgxSpinnerModule,
+		// NgxChartsModule
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
-	providers: [SearchFieldsData, EmpTableCols, Sort, DatePipe],
+	providers: [
+		SearchFieldsData, 
+		EmpTableCols, 
+		Sort, 
+		DatePipe, 
+		DataFilterService, 
+		CategoriesService, 
+		CategoryList
+	],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
