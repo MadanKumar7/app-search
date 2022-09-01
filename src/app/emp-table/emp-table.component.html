@@ -1,0 +1,92 @@
+<div class="wrapper">
+    <div class="container bg-blue bdr-blue mt-5 py-3">
+        <h3>Employees Details</h3>
+    </div>
+    
+    <div class="container bg-grey bdr-grey p-4 mb-5">
+        <div class="text-end mb-4">
+            <app-pagination 
+                #paginationTop 
+                [paginationValues]="paginationValues" 
+                (changeRowLimit)="changeRowLimit($event)"
+                (pagination)="startPagination($event)"
+            ></app-pagination>
+        </div>
+
+        <div class="cancel-filter mb-2" *ngIf="isFiltered">
+            <button class="btn btn-primary cancel-filter-btn" (click)="clearFilters()">
+                <img src="assets/images/cancel-icon-white.png" alt=""><span class="ps-2">Clear Filter</span>
+            </button>
+        </div>
+        
+        <div class="table-wrapper">
+            <form [formGroup]="employeeColForm">
+                <div formArrayName="empColArray">
+                    <ngx-datatable
+                        class="ngx-table emp-table"
+                        [rows]="employeeRows"
+                        [columns]="employeeCols"
+                        [scrollbarH]="true"
+                        [rowHeight]="'auto'"
+                        columnMode="standard"
+                        [limit]="paginationValues.limit"
+                        [summaryRow]="true"
+                        [summaryPosition]="'top'"
+                        [summaryHeight]="50"
+                    >
+
+                        <ngx-datatable-column 
+                            *ngFor="let column of employeeCols; let idx = index"
+                            name="{{column.name}}"
+                            prop="{{column.prop}}"
+                            [width]="column.width"
+                            [resizeable]="column.resizeable"
+                            [sortable]="column.sortable"
+                            [draggable]="column.draggable"
+                            [frozenLeft]="column.frozenLeft"
+                            [cellClass]="column.type === 'currency'? 'justify-content-end' : 'none'"
+                            [summaryTemplate]="summaryTpl"
+                            [formGroupName]="idx"
+                        >
+                            <ng-template ngx-datatable-header-template>
+                                <span>{{column.name}}</span>
+                                <i class="bi bi-caret-up sort up" *ngIf="column.order === 'default' || column.order === 'desc'" (click)="sortColumn(column.prop, 'asc', column.type)"></i>
+                                <i class="bi bi-caret-up-fill sort up" *ngIf="column.order === 'asc'"></i>
+                                <i class="bi bi-caret-down sort down" *ngIf="column.order === 'default' || column.order === 'asc'" (click)="sortColumn(column.prop, 'desc', column.type)"></i>
+                                <i class="bi bi-caret-down-fill sort down"  *ngIf="column.order === 'desc'"></i>
+                            </ng-template>
+
+                            <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                                <span *ngIf="column.type != 'currency'">{{value}}</span>
+                                <span *ngIf="column.type === 'currency'">{{value | currency: 'USD' : 'symbol'}}</span>
+                            </ng-template>
+                            <ng-template #summaryTpl>
+                                <input 
+                                    type="text"
+                                    #searchInput
+                                    placeholder="Search" 
+                                    [style.width.px]="column.width-30" 
+                                    class="col-search" 
+                                    [ngClass]="{'hide-bg': searchInput.value}"
+                                    (keyup)="applyFilter($event, column.prop)"
+                                    formControlName="filterValue"
+                                >
+                            </ng-template>
+
+                        </ngx-datatable-column>
+
+                    </ngx-datatable>
+                </div>
+            </form>
+        </div>
+
+        <div class="container text-end mt-4">
+            <app-pagination 
+                #paginationBtm 
+                [paginationValues]="paginationValues" 
+                (changeRowLimit)="changeRowLimit($event)"
+                (pagination)="startPagination($event)"
+            ></app-pagination>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+<label class="me-2 fw-bold">Show:</label>
+
+<select name="limit" id="limit" class="fw-bold" (change)="emitChangeRowLimit($event)">
+    <option *ngFor="let item of limitArray" >{{item}}</option>
+</select>
+
+<label for="pagination" class="mx-2 fw-bold">{{paginationValues.start}} - {{paginationValues.end}} of {{paginationValues.totalRecords}}</label>
+<button 
+    class="btn btn-secondary me-2" 
+    [disabled]="paginationValues.start === 0 || paginationValues.start === 1"
+    (click) = "gotoPrevious()"
+>
+    <b> < </b>
+</button>
+<button 
+    class="btn btn-secondary" 
+    [disabled]="paginationValues.end === 0 || paginationValues.end >= paginationValues.totalRecords"
+    (click) = "gotoNext()"
+>
+    <b> > </b>
+</button>
