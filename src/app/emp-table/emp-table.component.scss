@@ -41,7 +41,7 @@
 }
 
 .ngx-table.emp-table ::ng-deep .datatable-body-row{
-    
+
     &.datatable-row-odd .datatable-body-cell{
         background-color: #F7F7F7;
     }
@@ -79,7 +79,7 @@
         &:first-child{
             border-left: none;
         }
-    } 
+    }
 }
 
 .sort{
@@ -119,4 +119,13 @@
         width: 150px;
         height: 45px;
     }
+}
+
+.action-enable{
+	cursor: pointer;
+}
+
+.action-disable{
+	cursor: not-allowed;
+	opacity: 25%;
 }
