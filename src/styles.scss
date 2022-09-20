@@ -4,6 +4,14 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
+
+/* Importing Datepicker SCSS file. */
+@import "~ngx-bootstrap/datepicker/bs-datepicker";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 :root{
     --border: #CEDCE7 solid;
@@ -120,11 +128,4 @@ body{
 .theme-green .bs-datepicker-body table td[class*=select-] span:after {
     background-color: #0969DA !important;
 }
-/* Importing Bootstrap SCSS file. */
-@import "~bootstrap/scss/bootstrap";
 
-/* Importing Datepicker SCSS file. */
-@import "~ngx-bootstrap/datepicker/bs-datepicker";
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
