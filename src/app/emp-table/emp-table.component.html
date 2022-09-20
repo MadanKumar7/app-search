@@ -1,13 +1,14 @@
 <div class="wrapper">
+
     <div class="container bg-blue bdr-blue mt-5 py-3">
         <h3>Employees Details</h3>
     </div>
-    
+
     <div class="container bg-grey bdr-grey p-4 mb-5">
         <div class="text-end mb-4">
-            <app-pagination 
-                #paginationTop 
-                [paginationValues]="paginationValues" 
+            <app-pagination
+                #paginationTop
+                [paginationValues]="paginationValues"
                 (changeRowLimit)="changeRowLimit($event)"
                 (pagination)="startPagination($event)"
             ></app-pagination>
@@ -18,7 +19,7 @@
                 <img src="assets/images/cancel-icon-white.png" alt=""><span class="ps-2">Clear Filter</span>
             </button>
         </div>
-        
+
         <div class="table-wrapper">
             <form [formGroup]="employeeColForm">
                 <div formArrayName="empColArray">
@@ -35,7 +36,24 @@
                         [summaryHeight]="50"
                     >
 
-                        <ngx-datatable-column 
+						<ngx-datatable-column
+							[width]="100"
+							[resizeable]=false
+							[sortable]=false
+							[draggable]=false
+							[frozenLeft]=true
+						>
+							<ng-template ngx-datatable-header-template>
+                                <span>Actions</span>
+                            </ng-template>
+
+                            <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                                <span class="pe-3"><i class="bi bi-trash action-enable" (click)="handleAction('delete',row)"></i></span>
+								<span><i class="bi bi-pencil action-enable" (click)="handleAction('edit', row)"></i></span>
+                            </ng-template>
+						</ngx-datatable-column>
+
+                        <ngx-datatable-column
                             *ngFor="let column of employeeCols; let idx = index"
                             name="{{column.name}}"
                             prop="{{column.prop}}"
@@ -61,12 +79,12 @@
                                 <span *ngIf="column.type === 'currency'">{{value | currency: 'USD' : 'symbol'}}</span>
                             </ng-template>
                             <ng-template #summaryTpl>
-                                <input 
+                                <input
                                     type="text"
                                     #searchInput
-                                    placeholder="Search" 
-                                    [style.width.px]="column.width-30" 
-                                    class="col-search" 
+                                    placeholder="Search"
+                                    [style.width.px]="column.width-30"
+                                    class="col-search"
                                     [ngClass]="{'hide-bg': searchInput.value}"
                                     (keyup)="applyFilter($event, column.prop)"
                                     formControlName="filterValue"
@@ -81,12 +99,18 @@
         </div>
 
         <div class="container text-end mt-4">
-            <app-pagination 
-                #paginationBtm 
-                [paginationValues]="paginationValues" 
+            <app-pagination
+                #paginationBtm
+                [paginationValues]="paginationValues"
                 (changeRowLimit)="changeRowLimit($event)"
                 (pagination)="startPagination($event)"
             ></app-pagination>
         </div>
     </div>
+
+	<button type="button" hidden #openAlert data-bs-toggle="modal" data-bs-target="#alertModal"></button>
+	<app-alert [title]="alertTitle" [message]="alertMessage" [primaryButton]="primaryButton" [secondaryButton]="secondaryButton"></app-alert>
+
+	<button type="button" hidden #openForm data-bs-toggle="modal" data-bs-target="#formModal"></button>
+	<app-form-modal [title]="alertTitle" [primaryButton]="primaryButton" [secondaryButton]="secondaryButton" [formFields]="formFields" [detailsObj]="detailsObj"></app-form-modal>
 </div>

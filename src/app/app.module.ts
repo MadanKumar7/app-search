@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire/compat'
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database'
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,7 +20,11 @@ import { Sort } from './utils/sorting';
 import { environment } from 'src/environments/environment';
 import { NavBarComponent } from './shared-components/nav-bar/nav-bar.component';
 import { HomeComponent } from './home/home.component';
-import { DatePipe } from '@angular/common';
+import { DatePipe, CurrencyPipe } from '@angular/common';
+import { AlertComponent } from './shared-components/alert/alert.component';
+import { FormModalComponent } from './shared-components/form-modal/form-modal.component';
+
+
 
 @NgModule({
 	declarations: [
@@ -28,7 +33,9 @@ import { DatePipe } from '@angular/common';
   		EmpTableComponent,
     	PaginationComponent,
      	NavBarComponent,
-     	HomeComponent
+     	HomeComponent,
+      	AlertComponent,
+       	FormModalComponent
 	],
 	imports: [
 		BrowserModule,
@@ -40,10 +47,11 @@ import { DatePipe } from '@angular/common';
 		NgxDatatableModule,
 		AngularFireModule.initializeApp(environment.firebaseConfig),
    		AngularFireDatabaseModule,
-		NgxSpinnerModule
+		NgxSpinnerModule,
+		BsDatepickerModule.forRoot()
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
-	providers: [SearchFieldsData, EmpTableCols, Sort, DatePipe],
+	providers: [SearchFieldsData, EmpTableCols, Sort, DatePipe, CurrencyPipe],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

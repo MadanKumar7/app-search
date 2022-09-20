@@ -1,0 +1,102 @@
+<div class="modal" tabindex="-1" id="formModal">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">{{title}}</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body" #formModal>
+				<div [formGroup]="formGroup">
+					<div class="row">
+						<div *ngFor="let field of formFields" class="mb-5 col-sm-6">
+							<div *ngIf="field.type === 'text'">
+								<label>{{field.label}}:</label>
+								<input
+									type="text"
+									[name]="field.name"
+									[id]="field.name"
+									[formControlName]="field.name"
+									class="form-control"
+									[placeholder]="field.placeholder??''"
+								>
+							</div>
+							<div *ngIf="field.type === 'number'">
+								<label>{{field.label}}:</label>
+								<input
+									type="number"
+									[min]="field.negativeAllowed?'':0"
+									[name]="field.name"
+									[id]="field.name"
+									[formControlName]="field.name"
+									class="form-control"
+								>
+							</div>
+							<div *ngIf="field.type === 'currency'">
+								<label>{{field.label}}:</label>
+								<input
+									type="text"
+									[name]="field.name"
+									[id]="field.name"
+									[formControlName]="field.name"
+									class="form-control"
+									(blur)="transformTocurrency($event)"
+									(focus)="removeCurrencyFormat($event)"
+								>
+							</div>
+							<div *ngIf="field.type === 'select'">
+								<label [for]="field.name">{{field.label}}:</label>
+								<select
+									[name]="field.name"
+									[id]="field.name"
+									[formControlName]="field.name"
+									class="form-select"
+								>
+									<option value="" disabled selected>Select the option</option>
+									<option *ngFor="let item of field.options" [value]="item">{{item}}</option>
+								</select>
+							</div>
+							<div *ngIf="field.type === 'radioButton'">
+								<p>{{field.label}}:</p>
+								<div *ngFor="let item of field.options" class="form-check form-check-inline">
+									<label [for]="item.value" class="form-check-label">{{item.value}}</label>
+									<input
+										type="radio"
+										[name]="field.name"
+										[id]="item.value"
+										[value]="item.value"
+										[formControlName]="field.name"
+										class="form-check-input"
+									>
+								</div>
+							</div>
+							<div *ngIf="field.type === 'date'">
+								<label for=field.name>{{field.label}}:</label>
+								<input
+									type="text"
+									[placeholder]="field.placeholder"
+									class="form-control"
+									bsDatepicker
+									[formControlName]="field.name"
+									[minDate]="field.minDate"
+									[maxDate]="field.maxDate"
+									#dp="bsDatepicker"
+									readonly
+									[bsConfig]="{ showWeekNumbers: false }"
+								>
+							</div>
+							<div class="error-description mt-2 text-danger" *ngIf="formGroup.get(field.name)?.touched && formGroup.get(field.name)?.errors">
+								<p *ngIf="formGroup.get(field.name)?.errors?.required">Required</p>
+								<p *ngIf="!formGroup.get(field.name)?.errors?.required && formGroup.get(field.name)?.errors?.patternError">Please enter valid information and in correct format.</p>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{secondaryButton}}</button>
+				<button type="button" class="btn btn-primary" (click)="handlePrimaryAction()">{{primaryButton}}</button>
+			</div>
+		</div>
+	</div>
+</div>

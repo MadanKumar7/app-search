@@ -1,3 +1,4 @@
+import { AlertComponent } from './../shared-components/alert/alert.component';
 import { DatePipe } from '@angular/common';
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
@@ -17,6 +18,9 @@ export class EmpTableComponent implements OnInit, AfterViewInit {
 
 	@ViewChild('paginationTop') paginationTop!: PaginationComponent;
 	@ViewChild('paginationBtm') paginationBtm!: PaginationComponent;
+	@ViewChild('openAlert') openAlert!: ElementRef;
+	@ViewChild('openForm') openForm!: ElementRef;
+
 
 	employeeDetails: Employee[] = [];
 	employeeRows: Employee[] = [];
@@ -30,6 +34,12 @@ export class EmpTableComponent implements OnInit, AfterViewInit {
 	}
 	isFiltered = false;
 	employeeColForm!: FormGroup;
+	alertTitle:string = '';
+	alertMessage:string = '';
+	primaryButton:string = '';
+	secondaryButton:string = '';
+	detailsObj:any;
+	formFields:any;
 
 	constructor(
 		private empDataSvc: EmployeeDataService,
@@ -43,6 +53,7 @@ export class EmpTableComponent implements OnInit, AfterViewInit {
 	ngOnInit(): void {
 		this.employeeCols = this.empTableCols.getempTableCols();
 		this.initiateEmpColForm();
+		// this.getTodaysDate();
 	}
 
 	ngAfterViewInit(){
@@ -62,14 +73,14 @@ export class EmpTableComponent implements OnInit, AfterViewInit {
 				filterValue: this.fb.control(col.filterValue)
 			})
 		});
-		
+
 		//Create a form array for this group
 		const formArray = this.fb.array(formGroups);
 		// Create a top level form
 		this.employeeColForm = this.fb.group({
 			empColArray: formArray
 		});
-		
+
 	}
 
 	initializeTable(){
@@ -225,6 +236,91 @@ export class EmpTableComponent implements OnInit, AfterViewInit {
 		this.employeeCols.forEach((item:any) => {
 			item.filterValue = '';
 		});
+	}
+
+	handleAction(action:string, row:Employee){
+		if(action === 'delete'){
+			if(this.openAlert){
+				this.alertTitle = 'Confirm your action';
+				this.alertMessage = 'Are you sure that you want to permanently delete the record?';
+				this.primaryButton = 'Yes';
+				this.secondaryButton = 'Cancel';
+				this.openAlert.nativeElement.click();
+			}
+		}else if(action === 'edit'){
+			if(this.openForm){
+				this.alertTitle = 'Employee details edit form';
+				this.alertMessage = 'Are you sure that you want to permanently delete the record?';
+				this.primaryButton = 'Save';
+				this.secondaryButton = 'Cancel';
+				this.detailsObj = row;
+				this.setFormFields();
+				this.openForm.nativeElement.click();
+			}
+		}
+	}
+
+	setFormFields(){
+		this.formFields = [
+			{label:'First Name', name:'firstName', type:'text', required:true, pattern:'^[a-zA-Z]*$'},
+			{label:'Last Name', name:'lastName', type:'text', required:true, pattern:'^[a-zA-Z]*$'},
+			{label:'DOB', name:'dob', type:'date', minDate:null, maxDate:this.getValid18YearsDate(), required:true, pattern:null, placeholder:'MM/DD/YYYY'},
+			// {label:'Age', name:'age', type:'text', required:true, disabled:true, pattern:null},
+			{label:'Gender', name:'gender', type:'radioButton', options:this.getGenderOptions(), required:true, pattern:null},
+			{label:'Phone Number', name:'phoneNumber', type:'text', required:true, pattern:'^\d{3}-\d{4}-\d{2}', placeholder:'000-0000-00'},
+			{label:'Email', name:'email', type:'text', required:true, pattern:'^[a-zA-Z]*$'},
+			{label:'SSN', name:'ssn', type:'text', required:true, pattern:'^\d{3}-\d{4}-\d{2}', placeholder:'000-0000-00'},
+			{label:'Position', name:'position', type:'text', required:true, pattern:'^[a-zA-Z ]*$'},
+			{label:'Department', name:'department', type:'text', required:true, pattern:'^[a-zA-Z ]*$'},
+			{label:'Experience', name:'experience', type:'number', required:true, pattern:null, negativeAllowed: false},
+			{label:'Salary', name:'salary', type:'currency', required:true, pattern:null},
+			{label:'Policy Number', name:'policyNumber', type:'number', required:true, pattern:'^\d{7}', negativeAllowed: false},
+			{label:'Account Number', name:'accountNumber', type:'number', required:true, pattern:'^\d{10}', negativeAllowed: false},
+			{label:'Bank Name', name:'bankName', type:'text', required:true, pattern:'^[a-zA-Z ]*$'},
+			{label:'State', name:'state', type:'select', options:this.getAllStates(), required:true, pattern:null},
+			{label:'Maritial Status', name:'maritialStatus', type:'radioButton', options:this.getMaritialStatus(), required:true, pattern:null}
+		]
+	}
+
+	getValid18YearsDate(){
+		let today = new Date();
+		return new Date(today.getFullYear()-18, today.getMonth(), today.getDate());
+	}
+
+	getAllStates(){
+		return ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",
+		"MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
+		"SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
+	}
+
+	getGenderOptions(){
+		return [
+			{
+				value:'Female',
+				selected: true
+			},
+			{
+				value:'Male',
+				selected: false
+			},
+			{
+				value:'Other',
+				selected: false
+			}
+		]
+	}
+
+	getMaritialStatus(){
+		return [
+			{
+				value:'Married',
+				selected: true
+			},
+			{
+				value:'Single',
+				selected: false
+			}
+		]
 	}
 
 }
