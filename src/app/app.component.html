@@ -1,5 +1,5 @@
 <div class="container-flex bg-grey bdr-grey">
-	<app-nav-bar></app-nav-bar>
+	<app-nav-bar *ngIf="isLoggedIn"></app-nav-bar>
 </div>
 <ngx-spinner></ngx-spinner>
 <router-outlet></router-outlet>

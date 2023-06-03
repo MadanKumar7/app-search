@@ -86,7 +86,7 @@ export class EmpTableComponent implements OnInit {
 			let pageObj = {...this.paginationValues}
 			pageObj.start = Math.min(1, totalRecords);
 			pageObj.end = Math.min(10, totalRecords);
-			pageObj.limit = 10;
+			pageObj.limit = this.paginationValues.limit || 10;
 			pageObj.totalRecords = totalRecords;
 			this.paginationValues = {...pageObj}
 			// this.paginationTop?.setLimit(totalRecords);

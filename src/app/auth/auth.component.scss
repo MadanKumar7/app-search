@@ -1,0 +1,107 @@
+.form-wrapper{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 50%;
+	height: 90vh;
+}
+
+.login-form{
+	width: 80%;
+	padding: 50px;
+	// box-shadow: 0 0 8px 2px #8889;
+    // border-radius: 25px 0;
+}
+
+.mat-form-field{
+	display: flex;
+	justify-content: center;
+}
+
+.mat-button-toggle-group{
+	border-radius: 25px;
+	border: none;
+	.mat-button-toggle{
+		width: 100px;
+		&:nth-child(1){
+			box-shadow: inset 15px 8px 17px 5px #8889;
+		}
+		&:nth-child(2){
+			box-shadow: inset -15px 8px 17px 5px #8889;
+		}
+	}
+	.mat-button-toggle-checked{
+		background-color: black;
+		color: white;
+	}
+}
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-start, 
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-end,
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-gap{
+	border: none !important;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-start{
+	border-radius: 25px !important;
+	-moz-box-shadow: inset 3px 3px #8889;
+	-webkit-box-shadow: inset 3px 3px #8889;
+	box-shadow: inset 3px 3px 3px 3px #8889;
+	width: 100% !important;
+	-webkit-border-radius: 25px !important;
+	-moz-border-radius: 25px !important;
+	-ms-border-radius: 25px !important;
+	-o-border-radius: 25px !important;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-gap{
+	width: 0 !important;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-end{
+	flex-grow: 0 !important;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-wrapper{
+	width: 100%;
+}
+
+::ng-deep .mat-form-field-label {
+	padding: 0 20px !important;
+}
+
+::ng-deep input.mat-input-element{
+	padding: 0 25px !important;
+	width: 80%;
+}
+
+.btn-pill{
+	width: 150px;
+	box-shadow: -6px -5px 8px 0 #8889;
+    height: 50px;
+    border-radius: 25px;
+	&.black-fill{
+		background: black;
+    	color: white;
+		box-shadow: none;
+	}
+}
+
+@media screen and (max-width: 1200px) and (min-width:768px) {
+	.form-wrapper{
+		width: 80%;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.form-wrapper{
+		width: 100%;
+	}
+	.login-form{
+		width: 100%;
+	}
+}
+
+
+
+
+

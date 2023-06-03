@@ -107,3 +107,11 @@ body{
         background: #C6C6C6 0% 0% no-repeat padding-box;;
     }
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+button:disabled{
+	cursor: not-allowed;
+	pointer-events: none;
+}

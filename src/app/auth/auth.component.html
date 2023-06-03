@@ -1,0 +1,80 @@
+<div class="container form-wrapper">
+	<div class="login-form">
+		<div class="d-flex justify-content-center mb-5">
+			<mat-button-toggle-group name="login-signup" aria-label="Login or Signup">
+				<mat-button-toggle value="login" checked (change)="isLogin = true">Login</mat-button-toggle>
+				<mat-button-toggle value="signup" (change)="isLogin = false">Signup</mat-button-toggle>
+			</mat-button-toggle-group>
+		</div>
+
+		<ng-container [formGroup]="loginForm" *ngIf="isLogin; else signUpTmplt">
+			<label>Email:</label>
+			<mat-form-field appearance="outline" class="mt-3">
+				<input matInput placeholder="Enter Email" formControlName="email" class="shadow-input">
+				<mat-icon matSuffix>email</mat-icon>
+			</mat-form-field>
+
+			<label>Password:</label>
+			<mat-form-field appearance="outline" class="mt-3">
+				<input type="password" matInput placeholder="Enter Password" formControlName="password" class="shadow-input">
+				<mat-icon matSuffix>lock</mat-icon>
+			</mat-form-field>
+
+			<ng-container *ngIf="showMessage">
+				<div class="d-flex justify-content-center mt-1" [ngClass]="message.type === 'success'? 'text-success':'text-danger'">
+					{{message.message}}
+				</div>
+			</ng-container>
+
+			<div class="d-flex justify-content-center mt-5">
+				<button 
+					class="btn btn-pill" 
+					[disabled] = "loginForm.invalid"
+					[ngClass]="{'black-fill': loginForm.valid}" 
+					(click)="handleLogin()"
+				>
+					Login
+				</button>
+			</div>
+		</ng-container>
+
+		<ng-template #signUpTmplt [formGroup]="signupForm">
+			<label>Email:</label>
+			<mat-form-field appearance="outline" class="mt-3">
+				<input matInput placeholder="Enter Email" formControlName="email" class="shadow-input">
+				<mat-icon matSuffix>email</mat-icon>
+			</mat-form-field>
+
+			<label>Password:</label>
+			<mat-form-field appearance="outline" class="mt-3">
+				<input type="password" matInput placeholder="Enter Password" formControlName="password" class="shadow-input">
+				<mat-icon matSuffix>lock</mat-icon>
+			</mat-form-field>
+
+			<label>Confirm Password:</label>
+			<mat-form-field appearance="outline" class="mt-3">
+				<input type="password" matInput placeholder="Confirm Password" formControlName="confirmPassword" class="shadow-input">
+				<mat-icon matSuffix>lock</mat-icon>
+			</mat-form-field>
+
+			<ng-container *ngIf="showMessage">
+				<div class="d-flex justify-content-center mt-1" [ngClass]="message.type === 'success'? 'text-success':'text-danger'">
+					{{message.message}}
+				</div>
+			</ng-container> 
+			<div class="d-flex justify-content-center mt-5">
+				<button 
+					class="btn btn-pill" 
+					[disabled] = "signupForm.invalid"
+					[ngClass]="{'black-fill': signupForm.valid}" 
+					(click)="handleSignup()"
+				>
+					Signup
+				</button>
+			</div>
+		</ng-template>
+
+	</div>
+</div>
+
+<!-- https://www.angularjswiki.com/angular/angular-material-icons-list-mat-icon-list/ -->
